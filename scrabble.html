@@ -6,7 +6,7 @@ File:  www.github.com/StarfleetKlingon/Scrabble/scrabble.html
 Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
 Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
 copied or excerpted for educational purposes with credit to the author.
-updated by TMK on December 10, 2015 at 7:00AM.
+updated by TMK on December 10, 2015 at 11:00AM.
 -->
 
 <html lang="en">
@@ -40,18 +40,17 @@ updated by TMK on December 10, 2015 at 7:00AM.
 </div><!-- Tile-rack -->
 
 <div id="scoreboard">
- Round Score: <span id="score">0</span><br>
+ Word Score: <span id="score">0</span><br>
  Game Score: <span id="gamescore">0</span><br>
  Word: <span id="word"></span><br>
- <button id="submit">Submit Word</button>
-    <br><br>
+ <button id="submit">Submit Word</button><br><br>
  <button id="clear">Clear Board</button>
+    <div id="messages">Except for the first letter, letters must be placed directly next to or above/below another letter with no spaces or they will bounce.</div>
 </div>
 
 
 <!-- The Scrabble board. -->
 <div class="scrabble-board">
-<br><!-- Row 1 -->
 <div id="board">
    <span id="1_a">
        <span class="triple-word">Triple Word Score</span>
@@ -111,7 +110,7 @@ updated by TMK on December 10, 2015 at 7:00AM.
     <span id="3_e"></span>
     <span id="3_f"></span>
     <span id="3_g">
-      <span class="double-letter">Double Letter Score</span>
+      <span class="double-word">Double Letter Score</span>
     </span>
     <span id="3_h"></span>
     <span id="3_i">
@@ -126,21 +125,31 @@ updated by TMK on December 10, 2015 at 7:00AM.
     <span id="3_n"></span>
     <span id="3_o"></span>
 
-    <span id="4_a"></span>
+    <span id="4_a">
+      <span class="double-letter">Double Letter Score</span>
+    </span>
     <span id="4_b"></span>
     <span id="4_c"></span>
-    <span id="4_d"></span>
+    <span id="4_d">
+        <span class="double-word">Double Word Score</span>
+    </span>
     <span id="4_e"></span>
     <span id="4_f"></span>
     <span id="4_g"></span>
-    <span id="4_h"></span>
+    <span id="4_h">
+       <span class="double-letter">Double Letter Score</span>
+    </span>
     <span id="4_i"></span>
     <span id="4_j"></span>
     <span id="4_k"></span>
-    <span id="4_l"></span>
+    <span id="4_l">
+        <span class="double-word">Double Word Score</span>
+    </span>
     <span id="4_m"></span>
     <span id="4_n"></span>
-    <span id="4_o"></span>
+    <span id="4_o">
+       <span class="double-letter">Double Letter Score</span>
+    </span>
 
     </div> <!--board-->
 </div> <!--Scrabble-board -->
