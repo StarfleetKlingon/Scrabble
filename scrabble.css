@@ -1,12 +1,16 @@
-   /*
+    /*
 File:  www.github.com/StarfleetKlingon/scrabble.css
 91.461 Assignment 9: Scrabble
 Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
 Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
  copied or excerpted for educational purposes with credit to the author.
-updated by TMK on December 10 at 7:00AM. 
+updated by TMK on December 10 at 7:00AM.
 */
 
+#messages{
+  color: red;
+  font-weight: bold;
+}
 
 #tile-rack{
   float: left;
@@ -24,7 +28,7 @@ updated by TMK on December 10 at 7:00AM.
 
 .scrabble-board{
   float: right;
-  border-right: 20px;
+  border-right: 5px;
 }
 
 #board{
@@ -34,23 +38,46 @@ updated by TMK on December 10 at 7:00AM.
 }
 
 #scoreboard{
- margin-left: 200px;
- margin-right: 900px;
+ float: left;
+ padding-left: 30px;
+ width: 150px;
 }
 
 /* http://stackoverflow.com/questions/3280222/width-and-height-for-a-span-does-not-show-up-unless-a-text-is-entered */
 #board > span{
   padding: 1px;
   float: left;
-  background: #FFFFCC;
+  background: #F5F5F5;
   border: 1px solid black;
   height: 50px;
   width: 50px;
 }
 
-#triple-word{
+.triple-word{
   float: left;
-  background: red;
+  background: #cc93df;
   height: 50px;
   width: 50px;
+}
+
+.double-letter{
+  float: left;
+  background: #b2f7f9;
+  height: 50px;
+  width: 50px;
+}
+
+.double-word{
+  float: left;
+  background: #99ff99;
+  height: 50px;
+  width: 50px;
+}
+
+.triple-letter{
+  float: left;
+  background: lightpink;
+  height: 50px;
+  width: 50px;
+
 }
