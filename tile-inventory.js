@@ -4,13 +4,12 @@ File:  www.github.com/StarfleetKlingon/Scrabble/tile-inventory.js
 Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
 Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
  copied or excerpted for educational purposes with credit to the author.
-updated by TMK on December 10, 2015 at 7:00AM.
+updated by TMK on December 10, 2015 at 11:00AM.
 */
 
 
 //A data structure for the tiles written by Jesse M. Heines
 //Located at /~heines/91.461/91.461-2015-16f/461-assn/Scrabble_Pieces_AssociativeArray_Jesse.js
-
 var ScrabbleTiles = [] ;
 ScrabbleTiles["A"] = { "value" : 1,  "original-distribution" : 9,  "number-remaining" : 9  } ;
 ScrabbleTiles["B"] = { "value" : 3,  "original-distribution" : 2,  "number-remaining" : 2  } ;
@@ -39,6 +38,8 @@ ScrabbleTiles["X"] = { "value" : 8,  "original-distribution" : 1,  "number-remai
 ScrabbleTiles["Y"] = { "value" : 4,  "original-distribution" : 2,  "number-remaining" : 2  } ;
 ScrabbleTiles["Z"] = { "value" : 10, "original-distribution" : 1,  "number-remaining" : 1  } ;
 ScrabbleTiles["Blank"] = { "value" : 0,  "original-distribution" : 2,  "number-remaining" : 2  } ;
+
+var startPos = [];
 
 function get_tile(position_on_stack)
 {
@@ -147,14 +148,19 @@ function check_tile_inventory(letter, position_on_stack){
 }
 
 //Initializes a tile for a player.
+//Starting position information from github:
+//http://stackoverflow.com/questions/12350259/original-position-of-a-draggable-in-jquery-ui
 function claim_tile(letter, position_on_stack){
   ScrabbleTiles[letter]["number-remaining"] -= 1;
   img_loc = "<img src='tiles/Scrabble_Tile_" + letter + ".jpg' alt='" + letter + "' style='width:45px; height:45px;'>";
   document.getElementById(position_on_stack).innerHTML = img_loc;
  /* Can't drop tiles outside the board. http://stackoverflow.com/questions/26746823/jquery-ui-drag-and-drop-snap-to-center */
   $("#" + position_on_stack).draggable({
-    revert: 'invalid'
-  });  
+    revert: 'invalid',
+    start: function(evt, ui){
+    startPos[position_on_stack] = ui.helper.position();
+    }
+  });
   $("#" + position_on_stack).draggable("option", "letter", letter);
 
 }
