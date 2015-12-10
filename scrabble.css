@@ -1,3 +1,13 @@
+   /*
+File:  www.github.com/StarfleetKlingon/scrabble.css
+91.461 Assignment 9: Scrabble
+Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
+Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
+ copied or excerpted for educational purposes with credit to the author.
+updated by TMK on December 10 at 7:00AM. 
+*/
+
+
 #tile-rack{
   float: left;
   border-right: 40%;
@@ -26,8 +36,6 @@
 #scoreboard{
  margin-left: 200px;
  margin-right: 900px;
- padding-top: 200px;
- background: black;
 }
 
 /* http://stackoverflow.com/questions/3280222/width-and-height-for-a-span-does-not-show-up-unless-a-text-is-entered */
