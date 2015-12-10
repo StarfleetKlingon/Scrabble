@@ -1,0 +1,48 @@
+#tile-rack{
+  float: left;
+  border-right: 40%;
+  border-bottom: 20%;
+  padding: 20px;
+  background: lightpink;
+}
+
+#tile-rack > div{
+  height: 50px;
+  width: 50px;
+  padding: 2px;
+}
+
+.scrabble-board{
+  float: right;
+  border-right: 20px;
+}
+
+#board{
+  font-size: small;
+  text-align: center;
+  width: 850px;
+}
+
+#scoreboard{
+ margin-left: 200px;
+ margin-right: 900px;
+ padding-top: 200px;
+ background: black;
+}
+
+/* http://stackoverflow.com/questions/3280222/width-and-height-for-a-span-does-not-show-up-unless-a-text-is-entered */
+#board > span{
+  padding: 1px;
+  float: left;
+  background: #FFFFCC;
+  border: 1px solid black;
+  height: 50px;
+  width: 50px;
+}
+
+#triple-word{
+  float: left;
+  background: red;
+  height: 50px;
+  width: 50px;
+}
