@@ -1,4 +1,17 @@
+<!DOCTYPE html>
 
+<!--
+File:  www.github.com/StarfleetKlingon/Scrabble/scrabble.html
+91.461 Assignment 9: Scrabble
+Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
+Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
+copied or excerpted for educational purposes with credit to the author.
+updated by TMK on December 10, 2015 at 7:00AM.
+-->
+
+<html lang="en">
+
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -29,7 +42,10 @@
 <div id="scoreboard">
  Round Score: <span id="score">0</span><br>
  Game Score: <span id="gamescore">0</span><br>
+ Word: <span id="word"></span><br>
  <button id="submit">Submit Word</button>
+    <br><br>
+ <button id="clear">Clear Board</button>
 </div>
 
 
@@ -62,69 +78,69 @@
     <span id="1_o">
       <span class="triple-word">Triple Word Score</span>
     </span>
-    <span id="tile-2a"></span>
-    <span id="tile-2b">
+    <span id="2_a"></span>
+    <span id="2_b">
       <span class="double-word">Double Word Score</span>
     </span>
-    <span id="tile-2c"></span>
-    <span id="tile-2d"></span>
-    <span id="tile-2e"></span>
-    <span id="tile-2f">
+    <span id="2_c"></span>
+    <span id="2_d"></span>
+    <span id="2_e"></span>
+    <span id="2_f">
       <span class="triple-letter">Triple Letter Score</span>
     </span>
-    <span id="tile-2g"></span>
-    <span id="tile-2h"></span>
-    <span id="tile-2i"></span>
-    <span id="tile-2j">
+    <span id="2_g"></span>
+    <span id="2_h"></span>
+    <span id="2_i"></span>
+    <span id="2_j">
       <span class="triple-letter">Triple Letter Score</span>
     </span>
-    <span id="tile-2k"></span>
-    <span id="tile-2l">
+    <span id="2_k"></span>
+    <span id="2_l">
       <span class="double-letter">Double Letter Score</span>
     </span>
-    <span id="tile-2m"></span>
-    <span id="tile-2n"></span>
-    <span id="tile-2o"></span>
+    <span id="2_m"></span>
+    <span id="2_n"></span>
+    <span id="2_o"></span>
 
-    <span id="tile-3a"></span>
-    <span id="tile-3b"></span>
-    <span id="tile-3c">
+    <span id="3_a"></span>
+    <span id="3_b"></span>
+    <span id="3_c">
       <span class="double-letter">Double Word Score</span>
     </span>
-    <span id="tile-3d"></span>
-    <span id="tile-3e"></span>
-    <span id="tile-3f"></span>
-    <span id="tile-3g">
+    <span id="3_d"></span>
+    <span id="3_e"></span>
+    <span id="3_f"></span>
+    <span id="3_g">
       <span class="double-letter">Double Letter Score</span>
     </span>
-    <span id="tile-3h"></span>
-    <span id="tile-3i">
+    <span id="3_h"></span>
+    <span id="3_i">
       <span class="double-letter">Double Letter Score</span>
     </span>
-    <span id="tile-3j"></span>
-    <span id="tile-3k"></span>
-    <span id="tile-3l"></span>
-    <span id="tile-3m">
+    <span id="3_j"></span>
+    <span id="3_k"></span>
+    <span id="3_l"></span>
+    <span id="3_m">
       <span class="double-word">Double Word Score</span>
     </span>
-    <span id="tile-3n"></span>
-    <span id="tile-3o"></span>
+    <span id="3_n"></span>
+    <span id="3_o"></span>
 
-    <span id="tile-4a"></span>
-    <span id="tile-4b"></span>
-    <span id="tile-4c"></span>
-    <span id="tile-4d"></span>
-    <span id="tile-4e"></span>
-    <span id="tile-4f"></span>
-    <span id="tile-4g"></span>
-    <span id="tile-4h"></span>
-    <span id="tile-4i"></span>
-    <span id="tile-4j"></span>
-    <span id="tile-4k"></span>
-    <span id="tile-4l"></span>
-    <span id="tile-4m"></span>
-    <span id="tile-4n"></span>
-    <span id="tile-4o"></span>
+    <span id="4_a"></span>
+    <span id="4_b"></span>
+    <span id="4_c"></span>
+    <span id="4_d"></span>
+    <span id="4_e"></span>
+    <span id="4_f"></span>
+    <span id="4_g"></span>
+    <span id="4_h"></span>
+    <span id="4_i"></span>
+    <span id="4_j"></span>
+    <span id="4_k"></span>
+    <span id="4_l"></span>
+    <span id="4_m"></span>
+    <span id="4_n"></span>
+    <span id="4_o"></span>
 
     </div> <!--board-->
 </div> <!--Scrabble-board -->
