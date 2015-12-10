@@ -4,11 +4,10 @@ File:  www.github.com/StarfleetKlingon/Scrabble/scrabble.js
 Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
 Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
  copied or excerpted for educational purposes with credit to the author.
-updated by TMK on December 10, 2015 at 7:00AM.
+updated by TMK on December 10, 2015 at 11:00AM.
 */
 /* Globals */
 
-var turn = "human";
 var moves;
 var direction;
 var word = "";
@@ -18,8 +17,8 @@ var start;
 var end;
 var id = [];
 //Double and triple word scores should be added after the rest.
-var double_word_count;
-var triple_word_count;
+var double_word_count = 0;
+var triple_word_count = 0;
 //Data structure for tracking tiles.
 var TileLoc = [];
 TileLoc["player-tile1"]= {"row": -1, "column": -1, "letter": -1, "score": 0 };
@@ -58,8 +57,9 @@ $("#clear").click(function(){
 
       var dragged1 = document.getElementById(ui.draggable.attr("id"));
       //Once you've dropped a piece, you can't move it again.
-      //$(dragged1).draggable("disable");
+      $(dragged1).draggable("disable");
       //Get the letter.
+      //Hints on image from: http://stackoverflow.com/questions/3883882/get-the-alt-attribute-from-an-image-that-resides-inside-an-a-tag
       var letter = jQuery(dragged1).find("img").attr("alt");
       //Calculate the tile's score.
       calc_score(drop_loc, letter, dragged1.id);
@@ -82,9 +82,10 @@ function reset_screen()
   moves = 0;
   direction = 0;
   var i= 1;
+  //Move all elements back to the sidebar.
    while(i < 8)
     {
-      $("#tile-rack").append($("#player-tile" + i));
+      reset_tile();
       i+= 1;
     }
   init_tiles();
@@ -103,11 +104,12 @@ var i=1;
   }
 }
 
-//Calculates the score for a word.
+//Calculates the score for a submitted word.
 function calc_word_score()
 {
   var i = 1;
   var score = 0;
+  //Tallies up the score one last time.
    while(i < 8)
     {
       score += TileLoc["player-tile" + i]["score"];
@@ -134,14 +136,17 @@ function calc_score(drop_loc, tile, tileID)
       bonus = bonus.innerHTML;
       if(bonus == "Double Word Score")
        {
-         double_word_count+=1;
+         console.log("Double word");
+         double_word_count +=1;
        }
       if(bonus == "Triple Word Score")
        {
-         triple_word_count+=1;
+         console.log("triple word");
+         triple_word_count +=1;
        }
       if(bonus == "Double Letter Score")
        {
+         console.log("double letter");
           score *= 2;
        }
       if(bonus == "Triple Letter Score")
@@ -149,6 +154,7 @@ function calc_score(drop_loc, tile, tileID)
          score *= 3;
        }
     }
+
   //Use the array to track tile's current position and score.
   TileLoc[tileID]["letter"] = tile;
   TileLoc[tileID]["row"] = drop_loc.split("_")[0];
@@ -215,13 +221,42 @@ if(moves == 1)
 function word_sub_func()
 {
   first_move = true;
-  var word;
   var score = 0;
+  var i = 1;
 
   var word_score = parseInt(document.getElementById("score").innerHTML);
+    //Double word for double word count.
+        while(double_word_count > 0)
+        {
+          word_score *= 2;
+          double_word_count -= 1;
+        }
+        //Triple word for triple word count.
+        while(triple_word_count > 0)
+        {
+          word_score *= 3;
+          triple_word_count -= 1;
+        }
   var game_score = parseInt(document.getElementById("gamescore").innerHTML);
   document.getElementById("gamescore").innerHTML = word_score + game_score;
   document.getElementById("score").innerHTML = 0;
+  document.getElementById("word").innerHTML = "";
+
+  //If a tile is on the board, get a new one.
+  while(i < 8)
+  {
+     if(TileLoc["player-tile" + i]["row"] != -1)
+       { reset_tile("player-tile" + i, "decrement");  }
+     i+= 1;
+  }
+  enable_all();
+
+    moves = 0;
+    document.getElementById("score").innerHTML = 0;
+    document.getElementById("word").innerHTML = " ";
+    enable_all();
+    word = "";
+    reset_tileloc();
 }
 
 //Disable all but the four surrounding the first piece.
@@ -240,8 +275,6 @@ function disable_all_but_row_col(col, row)
 //a tile already placed.
 function disable_all_but_one()
 {
-  console.log(direction);
-
     //Disable all.
     $("#board > span").droppable("disable");
     //Enable the beginning and end.
@@ -262,12 +295,59 @@ function disable_all_but_one()
       $("#" + (parseInt(end_row) + 1) + "_" + col).droppable("enable");
     }
 }
-
+//Enables all pieces.
 function enable_all()
 {
+  $("#board > span").droppable("enable");
+}
+//Clears screen and resets game.
+function reset_screen()
+{
+  var i = 1;
+  while (i < 8)
+  {
+    reset_tile("player-tile" + i, "no decrement");
+    i += 1;
+  }
+  moves = 0;
+  document.getElementById("score").innerHTML = 0;
+  document.getElementById("gamescore").innerHTML = 0;
+  document.getElementById("word").innerHTML = " ";
+  enable_all();
+  word = "";
+}
+
+
+//Help deleting tile from: http://stackoverflow.com/questions/3387427/remove-element-by-id
+function reset_tile(tile, decval)
+{
+  var t;
+    if(decval == "no decrement")
+    {
+      var temp = document.getElementById(tile);
+      var letter = jQuery(temp).find("img").attr("alt");
+      ScrabbleTiles[letter]["number-remaining"] += 1;
+    }
+  t = document.getElementById(tile);
+  t.outerHTML = null;
+  delete t;
+  $("#tile-rack").append('<div id=' + tile + '></div>');
+  get_tile(tile);
 
 }
 
+function reset_tileloc()
+{
+  var i = 1;
+  while(i < 8)
+  {
+    TileLoc["player-tile" + i]["row"] = -1;
+    TileLoc["player-tile" + i]["column"] = -1;
+    TileLoc["player-tile" + i]["letter"] = -1;
+    TileLoc["player-tile" + i]["score"] = 0;
+    i+= 1;
+  }
+}
 
 
 //Function from Stack overflow when I was looking to see if there was a
