@@ -1,3 +1,13 @@
+/*
+File:  www.github.com/StarfleetKlingon/Scrabble/tile-inventory.js
+91.461 Assignment 9:  Scrabble
+Therese M. Kuczynski, UMass Lowell Computer Science Student, therese_kuczynski@student.uml.edu
+Copyright (c) 2015 by Therese M. Kuczynski.  All rights reserved.  May be freely
+ copied or excerpted for educational purposes with credit to the author.
+updated by TMK on December 10, 2015 at 7:00AM.
+*/
+
+
 //A data structure for the tiles written by Jesse M. Heines
 //Located at /~heines/91.461/91.461-2015-16f/461-assn/Scrabble_Pieces_AssociativeArray_Jesse.js
 
@@ -28,11 +38,10 @@ ScrabbleTiles["W"] = { "value" : 4,  "original-distribution" : 2,  "number-remai
 ScrabbleTiles["X"] = { "value" : 8,  "original-distribution" : 1,  "number-remaining" : 1  } ;
 ScrabbleTiles["Y"] = { "value" : 4,  "original-distribution" : 2,  "number-remaining" : 2  } ;
 ScrabbleTiles["Z"] = { "value" : 10, "original-distribution" : 1,  "number-remaining" : 1  } ;
-ScrabbleTiles["_"] = { "value" : 0,  "original-distribution" : 2,  "number-remaining" : 2  } ;
+ScrabbleTiles["Blank"] = { "value" : 0,  "original-distribution" : 2,  "number-remaining" : 2  } ;
 
 function get_tile(position_on_stack)
 {
- console.log(position_on_stack);
 //Random number generator based on example at: http://www.w3schools.com/jsref/jsref_random.asp
   //Random number between 1 and 99.
   var rand = Math.floor((Math.random() * 99) + 1);
@@ -90,7 +99,7 @@ function get_tile(position_on_stack)
     case (rand == 70):
       check_tile_inventory("Q", position_on_stack);
       break;
-    case (rand >= 71 && rand >= 75):
+    case (rand >= 71 && rand <= 75):
       check_tile_inventory("R", position_on_stack);
       break;
     case (rand >= 76 && rand <= 79):
@@ -118,12 +127,13 @@ function get_tile(position_on_stack)
       check_tile_inventory("Z", position_on_stack);
       break;
     case (rand >= 98):
-      check_tile_inventory("_", position_on_stack);
+      check_tile_inventory("Blank", position_on_stack);
       break;
   }
 }
 
-
+//Makes sure there's a tile for the type the random number
+//generator selected, otherwise rolls another random number.
 function check_tile_inventory(letter, position_on_stack){
    if(ScrabbleTiles[letter]["number-remaining"] > 0)
      {
@@ -136,11 +146,10 @@ function check_tile_inventory(letter, position_on_stack){
      }
 }
 
+//Initializes a tile for a player.
 function claim_tile(letter, position_on_stack){
-  console.log(letter);
   ScrabbleTiles[letter]["number-remaining"] -= 1;
   img_loc = "<img src='tiles/Scrabble_Tile_" + letter + ".jpg' alt='" + letter + "' style='width:45px; height:45px;'>";
-  console.log(position_on_stack);
   document.getElementById(position_on_stack).innerHTML = img_loc;
  /* Can't drop tiles outside the board. http://stackoverflow.com/questions/26746823/jquery-ui-drag-and-drop-snap-to-center */
   $("#" + position_on_stack).draggable({
